@@ -4,9 +4,9 @@ from bs4 import BeautifulSoup
 import re
 import os
 
-#url='https://aniwatch.to/most-popular'
+Url=input(print('Enter the website from which you want to download:'))
 folder_name=input(print('Name the folder you want to download in:'))
-def imagedown(url,folder):
+def imagedownload(url,folder):
     try:
         os.mkdir(os.path.join(os.getcwd(),folder))
     except:
@@ -37,4 +37,4 @@ def imagedown(url,folder):
             print('Downloading: ', name.group()[5:-1])
 
 
-imagedown('https://aniwatch.to/most-popular',folder_name)
+imagedownload(Url,folder_name)
