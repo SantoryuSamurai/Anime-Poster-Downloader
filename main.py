@@ -4,9 +4,11 @@ from bs4 import BeautifulSoup
 import re
 import os
 
-Url=input(print('Enter the website from which you want to download:'))
-folder_name=input(print('Name the folder you want to download in:'))
+Url=input('Enter the website from which you want to download:')
+folder_name=input('Name the folder you want to download in:')
+
 def imagedownload(url,folder):
+ 
     try:
         os.mkdir(os.path.join(os.getcwd(),folder))
     except:
@@ -27,6 +29,11 @@ def imagedownload(url,folder):
         #print(name.group()[5:-1])
         #print(link.group()[5:-1])
         #print(" ")
+        if link.group()[5:-1].startswith('/'):
+            link=url + link.group()[5:-1]
+        else:
+            link=link.group()[5:-1]
+        
         with open(name.group()[5:-1] + '.jpg', 'wb') as f:
             try: 
                 img = requests.get(link.group()[5:-1])
