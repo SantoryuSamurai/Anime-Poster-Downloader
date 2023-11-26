@@ -15,6 +15,7 @@ def imagedownload(url,folder):
         pass
     os.chdir(os.path.join(os.getcwd(),folder))
     r = requests.get(url)
+    print(r)
 
     soup = BeautifulSoup(r.content, 'lxml')
     images=soup.find_all('img')
@@ -36,7 +37,7 @@ def imagedownload(url,folder):
         
         with open(name.group()[5:-1] + '.jpg', 'wb') as f:
             try: 
-                img = requests.get(link.group()[5:-1])
+                img = requests.get(link)
                 f.write(img.content)
             except requests.exceptions.MissingSchema:
                 print("Invalid url")
